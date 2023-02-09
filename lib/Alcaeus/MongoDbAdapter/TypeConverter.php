@@ -45,6 +45,8 @@ class TypeConverter
                 return $value;
             case $value instanceof \DateTimeInterface:
                 return self::fromLegacy((array) $value);
+            case $value instanceof \BackedEnum:
+                return $value->value;
             case is_array($value):
             case is_object($value):
                 $result = [];

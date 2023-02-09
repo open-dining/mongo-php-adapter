@@ -35,6 +35,7 @@ class TypeConverter
      *
      * @param mixed $value
      * @return mixed
+     * @throws Exception if non-backed Enum passed
      */
     public static function fromLegacy($value)
     {
@@ -47,6 +48,8 @@ class TypeConverter
                 return self::fromLegacy((array) $value);
             case $value instanceof \BackedEnum:
                 return $value->value;
+            case $value instanceof \Enum:
+                throw new Exception("Cannot serialize a non-backed (Pure) Enum into Mongo BSON");
             case is_array($value):
             case is_object($value):
                 $result = [];

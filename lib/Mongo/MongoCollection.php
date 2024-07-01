@@ -414,6 +414,7 @@ class MongoCollection
             'err' => null,
             'errmsg' => null,
             'updatedExisting' => $result->getUpsertedCount() == 0 && $result->getModifiedCount() > 0,
+            'upsertedCount' => $result->getUpsertedCount(),
         ];
     }
 
